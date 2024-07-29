@@ -1,0 +1,27 @@
+# permissions for end users to view memcacheds.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: memcached-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: insightci
+    app.kubernetes.io/part-of: insightci
+    app.kubernetes.io/managed-by: kustomize
+  name: memcached-viewer-role
+rules:
+- apiGroups:
+  - cache.insightci.insightlinks.com
+  resources:
+  - memcacheds
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - cache.insightci.insightlinks.com
+  resources:
+  - memcacheds/status
+  verbs:
+  - get
